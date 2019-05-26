@@ -2,6 +2,7 @@ add airflow user:
   user.present:
     - name: airflow
     - home: /srv/airflow
+    - shell: /bin/bash
     - optional_groups:
       - sudo
 
@@ -18,3 +19,4 @@ create airflow virtualenv:
     - pip_pkgs:
       - apache-airflow
       - 'apache-airflow[postgres]'
+      - psycopg2
