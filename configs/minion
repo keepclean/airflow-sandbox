@@ -1,0 +1,5 @@
+file_client: local
+state_verbose: False
+state_output: changes
+process_count_max: 4
+log_level: warning

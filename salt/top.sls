@@ -1,0 +1,5 @@
+base:
+  '*':
+    - salt
+    - common
+    - airflow
