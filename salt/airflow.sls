@@ -3,8 +3,15 @@ add airflow user:
     - name: airflow
     - home: /srv/airflow
     - shell: /bin/bash
-    - optional_groups:
-      - sudo
+
+airflow sudo file:
+  file.managed:
+    - name: /etc/sudoers.d/airflow
+    - source:
+      - salt://templates/airflow.sudoers
+    - mode: 440
+    - require:
+      - add airflow user
 
 create airflow virtualenv:
   virtualenv.managed:
@@ -30,7 +37,10 @@ init airflow db:
   cmd.run:
     - name: airflow initdb
     - runas: airflow
-    - unless: psql -l airflow | grep -q airflow
+    - onlyif: psql -l airflow | grep -q airflow
+    - env:
+        - AIRFLOW_HOME: /srv/airflow
+        - AIRFLOW_CONFIG: /srv/airflow/airflow.cfg
     - require:
       - create airflow db user
       - create airflow db
