@@ -13,4 +13,3 @@ install common packages:
       - tmux
       - tree
       - vim
-      - zsh
