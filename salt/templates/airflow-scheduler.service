@@ -1,0 +1,16 @@
+[Unit]
+Description=Airflow webserver daemon
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Environment="AIRFLOW_HOME=/srv/airflow"
+User=airflow
+Group=airflow
+Type=simple
+ExecStart=/srv/airflow/bin/airflow scheduler
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
