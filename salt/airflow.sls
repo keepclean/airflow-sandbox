@@ -38,6 +38,7 @@ init airflow db:
     - name: airflow initdb
     - runas: airflow
     - onlyif: psql -l airflow | grep -q airflow
+    - creates: /srv/airflow/DB_INITIALIZED
     - env:
         - AIRFLOW_HOME: /srv/airflow
         - AIRFLOW_CONFIG: /srv/airflow/airflow.cfg
@@ -47,6 +48,15 @@ init airflow db:
       - set privileges for airflow db
       - create airflow virtualenv
       - airflow config file
+
+run airflow initdb only once:
+  file.managed:
+    - name: /srv/airflow/DB_INITIALIZED
+    - contents: ""
+    - user: airflow
+    - group: airflow
+    - require:
+      - init airflow db
 
 airflow webserver systemd service:
   file.managed:
