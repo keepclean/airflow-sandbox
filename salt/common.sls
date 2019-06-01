@@ -2,6 +2,7 @@ install common packages:
   pkg.installed:
     - pkgs:
       - build-essential
+      - curl
       - postgresql
       - postgresql-contrib
       - postgresql-server-dev-all
