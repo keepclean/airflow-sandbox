@@ -1,0 +1,15 @@
+[Unit]
+Description=node_exporter daemon
+After=syslog.target network.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+WorkingDirectory=/srv/prometheus-node_exporter/current
+ExecStart=/srv/prometheus-node_exporter/current/node_exporter
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

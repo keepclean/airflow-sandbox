@@ -5,3 +5,4 @@ base:
     - db
     - airflow
     - prometheus
+    - node_exporter

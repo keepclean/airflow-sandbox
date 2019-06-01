@@ -11,7 +11,7 @@ install prometheus {{ version }}:
     - require:
       - add prometheus user
 
-symlink to current directory:
+symlink current directory to prometheus version:
   file.symlink:
     - name: /srv/prometheus/current
     - target: /srv/prometheus/{{ version }}
