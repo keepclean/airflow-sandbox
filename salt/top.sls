@@ -4,3 +4,4 @@ base:
     - common
     - db
     - airflow
+    - prometheus
