@@ -27,19 +27,35 @@ add prometheus user:
     - home: /srv/prometheus
     - system: True
 
+prometheus config:
+  file.managed:
+    - name: /srv/prometheus/config/prometheus.yml
+    - source:
+      - salt://templates/prometheus.yml
+    - user: prometheus
+    - group: prometheus
+    - mode: 644
+    - makedirs: True
+    - require:
+      - add prometheus user
+      - symlink current directory to prometheus version
+
 prometheus systemd service:
   file.managed:
     - name: /etc/systemd/system/prometheus.service
     - source:
       - salt://templates/prometheus.service
     - require:
-      - add prometheus user
-      - symlink current directory to prometheus version
+      - prometheus config
 
 run prometheus service:
   service.running:
     - name: prometheus.service
     - enable: True
     - no_block: True
+    - reload: True
     - require:
       - prometheus systemd service
+    - watch:
+      - file: prometheus systemd service
+      - file: prometheus config

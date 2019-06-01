@@ -7,7 +7,12 @@ User=prometheus
 Group=prometheus
 Type=simple
 WorkingDirectory=/srv/prometheus/current
-ExecStart=/srv/prometheus/current/prometheus --config.file=/srv/prometheus/current/prometheus.yml --log.level info
+ExecStart=/srv/prometheus/current/prometheus \
+    --config.file=/srv/prometheus/config/prometheus.yml \
+    --log.level=warn --log.format=json \
+    --storage.tsdb.path="../data" \
+    --storage.tsdb.retention.time=1d
+ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=5s
 
