@@ -8,7 +8,13 @@ User=prometheus
 Group=prometheus
 Type=simple
 WorkingDirectory=/srv/alertmanager/current
-ExecStart=/srv/alertmanager/current/alertmanager
+ExecStart=/srv/alertmanager/current/alertmanager \
+    --config.file=/srv/alertmanager/config/alertmanager.yml \
+    --storage.path="../data/" \
+    --data.retention=12h \
+    --log.level=warn \
+    --log.format=json
+ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=5s
 

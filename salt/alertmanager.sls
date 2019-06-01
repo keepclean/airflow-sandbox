@@ -21,18 +21,34 @@ symlink current directory to alertmanager version:
     - require:
       - add prometheus user
 
+alertmanager config:
+  file.managed:
+    - name: /srv/alertmanager/config/alertmanager.yml
+    - source:
+      - salt://templates/alertmanager.yml
+    - user: prometheus
+    - group: prometheus
+    - mode: 644
+    - makedirs: True
+    - require:
+      - symlink current directory to alertmanager version
+
 alertmanager systemd service:
   file.managed:
     - name: /etc/systemd/system/alertmanager.service
     - source:
       - salt://templates/alertmanager.service
     - require:
-      - symlink current directory to alertmanager version
+      - alertmanager config
 
 run alertmanager service:
   service.running:
     - name: alertmanager.service
     - enable: True
     - no_block: True
+    - reload: True
     - require:
       - alertmanager systemd service
+    - watch:
+      - file: alertmanager config
+      - file: alertmanager systemd service
