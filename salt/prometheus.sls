@@ -4,16 +4,17 @@ install prometheus {{ version }}:
     - name: /srv/prometheus/{{ version }}
     - source: https://github.com/prometheus/prometheus/releases/download/v{{ version }}/prometheus-{{ version }}.linux-amd64.tar.gz
     - source_hash: https://github.com/prometheus/prometheus/releases/download/v{{ version }}/sha256sums.txt
+    - options: --directory /srv/prometheus/{{ version }} --strip-components=1
+    - enforce_toplevel: False
     - user: prometheus
     - group: prometheus
-    - enforce_toplevel: False
     - require:
       - add prometheus user
 
 symlink to current directory:
   file.symlink:
     - name: /srv/prometheus/current
-    - target: /srv/prometheus/{{ version }}/prometheus-{{ version }}.linux-amd64
+    - target: /srv/prometheus/{{ version }}
     - user: prometheus
     - group: prometheus
     - require:
