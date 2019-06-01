@@ -6,6 +6,7 @@ install common packages:
       - postgresql-contrib
       - postgresql-server-dev-all
       - python-virtualenv
+      - python-pip
       - python3-dev
       - python3-pip
       - python3-venv
