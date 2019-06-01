@@ -34,7 +34,7 @@ prometheus systemd service:
       - salt://templates/prometheus.service
     - require:
       - add prometheus user
-      - symlink to current directory
+      - symlink current directory to prometheus version
 
 run prometheus service:
   service.running:

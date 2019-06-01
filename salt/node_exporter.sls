@@ -27,7 +27,7 @@ node_exporter systemd service:
       - salt://templates/node_exporter.service
     - require:
       - add prometheus user
-      - symlink to current directory
+      - symlink current directory to node_exporter version
 
 run node_exporter service:
   service.running:
