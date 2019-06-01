@@ -13,7 +13,7 @@ SOURCES
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/stretch64"
   config.vm.hostname = "airflow"
-  config.vm.network "private_network", ip: "192.168.56.4", :adapter => 2
+  config.vm.network "private_network", ip: "10.0.0.254", :adapter => 2
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "airflow"
