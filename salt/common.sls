@@ -3,6 +3,7 @@ install common packages:
     - pkgs:
       - build-essential: 12.3
       - curl
+      - git
       - postgresql: 9.6+181+deb9u2
       - postgresql-contrib: 9.6+181+deb9u2
       - postgresql-server-dev-all: 181+deb9u2
