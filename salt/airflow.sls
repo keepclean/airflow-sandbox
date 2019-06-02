@@ -18,10 +18,7 @@ create airflow virtualenv:
     - name: /srv/airflow
     - python: python3
     - user: airflow
-    - pip_pkgs:
-      - apache-airflow
-      - 'apache-airflow[postgres]'
-      - psycopg2
+    - requirements: salt://templates/airflow-requirements.txt
     - require:
       - add airflow user
 
