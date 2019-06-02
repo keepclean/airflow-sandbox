@@ -1,17 +1,17 @@
 install common packages:
   pkg.installed:
     - pkgs:
-      - build-essential
+      - build-essential: 12.3
       - curl
-      - postgresql
-      - postgresql-contrib
-      - postgresql-server-dev-all
-      - python-virtualenv
-      - python-pip
-      - python3-dev
-      - python3-pip
-      - python3-venv
-      - python3-virtualenv
+      - postgresql: 9.6+181+deb9u2
+      - postgresql-contrib: 9.6+181+deb9u2
+      - postgresql-server-dev-all: 181+deb9u2
+      - python-virtualenv: 15.1.0+ds-1
+      - python-pip: 9.0.1-2+deb9u1
+      - python3-dev: 3.5.3-1
+      - python3-pip: 9.0.1-2+deb9u1
+      - python3-venv: 3.5.3-1
+      - python3-virtualenv: 15.1.0+ds-1
       - tmux
       - tree
       - vim
