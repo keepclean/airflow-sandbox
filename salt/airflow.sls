@@ -4,6 +4,15 @@ add airflow user:
     - home: /srv/airflow
     - shell: /bin/bash
 
+modify airflow user bashrc:
+  file.append:
+    - name: /srv/airflow/.bashrc
+    - text:
+      - export AIRFLOW_HOME=/srv/airflow
+      - export AIRFLOW_CONFIG=${AIRFLOW_HOME}/airflow.cfg
+    - require:
+      - add airflow user
+
 airflow sudo file:
   file.managed:
     - name: /etc/sudoers.d/airflow
