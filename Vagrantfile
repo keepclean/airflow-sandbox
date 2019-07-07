@@ -37,5 +37,6 @@ Vagrant.configure("2") do |config|
 
     salt.python_version = "3"
   end
+  config.vm.synced_folder "dags/", "/srv/airflow/dags", type: "nfs"
 
 end
