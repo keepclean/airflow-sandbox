@@ -1,5 +1,5 @@
 alembic==0.9.10
-apache-airflow==1.10.15
+apache-airflow==2.1.2
 Babel==2.7.0
 certifi==2019.3.9
 chardet==3.0.4
